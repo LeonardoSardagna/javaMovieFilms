@@ -5,12 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DadosTemporada(@JsonAlias("Season") String temporada,
-                             @JsonAlias("Episodes") List<DadoEpisodio> episodios) {
-
+public record DadosTemporada(@JsonAlias("Title") String titulo,
+                             @JsonAlias({"Season", "Seasons"}) String temporada,
+                             @JsonAlias("Episodes") List<DadosEpisodio> episodios) {
     @Override
     public String toString() {
-        return "Dados da Temporada: " +
+        return "Dados do Temporada: " +
+                "Título: " + titulo +
                 ", Temporada: " + temporada +
                 ", Episódios: " + episodios;
     }

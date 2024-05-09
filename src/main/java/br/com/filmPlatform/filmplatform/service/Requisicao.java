@@ -6,24 +6,22 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class RequestAddress {
-    public String obterendereco(String endereco){
+public class Requisicao {
 
+    public String obterDados(String enderecoUrl){
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endereco.replace(" ", "%20")))
+                .uri(URI.create(enderecoUrl.replace(" ", "%20")))
                 .build();
         HttpResponse<String> response = null;
         try {
-            response = HttpClient.newHttpClient()
+             response = HttpClient.newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
+        };
 
-        String json = response.body();
-        return json;
+        return response.body();
     }
 }
