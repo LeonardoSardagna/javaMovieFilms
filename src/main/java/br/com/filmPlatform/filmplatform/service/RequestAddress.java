@@ -10,7 +10,7 @@ public class RequestAddress {
     public String obterendereco(String endereco){
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endereco.replace(" ", "+")))
+                .uri(URI.create(endereco.replace(" ", "%20")))
                 .build();
         HttpResponse<String> response = null;
         try {
