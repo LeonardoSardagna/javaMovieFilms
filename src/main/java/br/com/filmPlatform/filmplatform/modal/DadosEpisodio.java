@@ -7,13 +7,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public record DadosEpisodio(@JsonAlias("Season") String temporada,
                             @JsonAlias("Episode") String episodio,
                             @JsonAlias("Title") String titulo,
-                            @JsonAlias("imdbRating") String avaliacao) {
+                            @JsonAlias("imdbRating") String avaliacao,
+                            @JsonAlias("Released") String dataDeLancamento)
+                            {
     @Override
     public String toString() {
         return "Dados do Episodio: " +
                 "Temporada: "+ temporada +
                 ", Episódio: " + episodio +
                 ", Título: " + titulo +
-                ", Avaliação: " + avaliacao;
+                ", Avaliação: " + avaliacao+
+                ", Data de lançamento: "+ dataDeLancamento;
     }
 }
