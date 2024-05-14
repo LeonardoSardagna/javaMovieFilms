@@ -4,8 +4,10 @@ import br.com.filmPlatform.filmplatform.modal.DadosSerie;
 import br.com.filmPlatform.filmplatform.modal.DadosTemporada;
 import br.com.filmPlatform.filmplatform.modal.Episodio;
 import br.com.filmPlatform.filmplatform.modal.Serie;
+import br.com.filmPlatform.filmplatform.repository.SerieRepository;
 import br.com.filmPlatform.filmplatform.service.ConverterDados;
 import br.com.filmPlatform.filmplatform.service.Requisicao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,6 +21,9 @@ public class Principal {
 
     private final String ENDERECO = "http://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=f6239180";
+
+    @Autowired
+    private SerieRepository repository;
 
     public void menuPrincipal() {
         var opcao = -1;
@@ -51,6 +56,11 @@ public class Principal {
             }
         }
     }
+
+    public Principal(SerieRepository repository) {
+        this.repository = repository;
+    }
+
     private DadosSerie getSerie(){
         System.out.println("Digite o nome da série para buscar: ");
         var nomeDaSerie = entrada.nextLine().toLowerCase().replace(" ", "%20");
@@ -63,7 +73,8 @@ public class Principal {
 
     private void buscarSerie(){
         DadosSerie serie = getSerie();
-        listaDeSeries.add(serie);
+        Serie dadoSerie = new Serie(serie);
+        repository.save(dadoSerie);
         System.out.println(serie);
     }
 
@@ -86,12 +97,7 @@ public class Principal {
     }
 
     private void listarSeries(){
-        List<Serie> serieList = new ArrayList<>();
-
-        serieList = listaDeSeries.stream()
-                .map(d -> new Serie(d))
-                .collect(Collectors.toList());
-
+        List<Serie> serieList = repository.findAll();
         serieList.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);

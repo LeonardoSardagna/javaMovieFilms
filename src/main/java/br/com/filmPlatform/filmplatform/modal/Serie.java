@@ -1,16 +1,30 @@
 package br.com.filmPlatform.filmplatform.modal;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@Entity
+@Table(name = "series")
 public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String titulo;
     private String ano;
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
     private Integer totalDeTemporadas;
     private Double avaliacao;
     private String descicao;
     private String atores;
     private String imagem;
+    @Transient
+    private List<Episodio> episodios = new ArrayList<>();
+
+    public Serie(){}
 
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
@@ -21,6 +35,34 @@ public class Serie {
         this.descicao = dadosSerie.descicao();
         this.atores = dadosSerie.atores();
         this.imagem = dadosSerie.imagem();
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setGenero(Categoria genero) {
+        this.genero = genero;
+    }
+
+    public void setTotalDeTemporadas(Integer totalDeTemporadas) {
+        this.totalDeTemporadas = totalDeTemporadas;
+    }
+
+    public void setAvaliacao(Double avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
     public String getTitulo() {
