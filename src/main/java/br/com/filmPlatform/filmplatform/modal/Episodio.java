@@ -1,14 +1,24 @@
 package br.com.filmPlatform.filmplatform.modal;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+@Entity
+@Table(name = "episodios")
 public class Episodio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int temporada;
     private int numeroEpisodio;
     private String titulo;
     private double avaliacao;
     private LocalDate dataDeLancamento;
+    @ManyToOne
+    private Serie serie;
+
+    public Episodio() {}
 
     public Episodio(int temporada, DadosEpisodio dadosEpisodio) {
 
@@ -23,6 +33,22 @@ public class Episodio {
         }
 
         this.dataDeLancamento = LocalDate.parse(dadosEpisodio.dataDeLancamento());
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     public int getTemporada() {
