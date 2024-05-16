@@ -16,7 +16,7 @@ public record DadosSerie(@JsonAlias("Title") String titulo,
     public String toString() {
         return "Título: " + titulo +
                 ", Ano: " + ano +
-                ", Genêro: " + genero +
+                ", Gênero: " + genero +
                 ", Total De Temporadas: " + totalDeTemporadas +
                 ", Avaliação: " + avaliacao +
                 ", Descrição: " + descicao +

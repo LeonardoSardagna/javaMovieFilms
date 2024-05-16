@@ -2,8 +2,11 @@ package br.com.filmPlatform.filmplatform.modal;
 
 import jakarta.persistence.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 @Entity
 @Table(name = "episodios")
 public class Episodio {
@@ -21,7 +24,6 @@ public class Episodio {
     public Episodio() {}
 
     public Episodio(int temporada, DadosEpisodio dadosEpisodio) {
-
         this.temporada = temporada;
         this.numeroEpisodio = Integer.parseInt(dadosEpisodio.episodio());
         this.titulo = dadosEpisodio.titulo();
@@ -32,7 +34,11 @@ public class Episodio {
             this.avaliacao = 0;
         }
 
-        this.dataDeLancamento = LocalDate.parse(dadosEpisodio.dataDeLancamento());
+        try{
+            this.dataDeLancamento = LocalDate.parse(dadosEpisodio.dataDeLancamento());
+        }catch (DateTimeParseException e){
+            this.dataDeLancamento = null;
+        }
     }
 
     public Long getId() {
@@ -93,11 +99,10 @@ public class Episodio {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "Temporada: " + temporada +
                 ", Número do episódio: " + numeroEpisodio +
                 ", Título: " + titulo +
                 ", Avaliação: " + avaliacao +
-                ", Data de lançamento: "+ dataDeLancamento.format(formatador);
+                ", Data de lançamento: "+  dataDeLancamento;
     }
 }
