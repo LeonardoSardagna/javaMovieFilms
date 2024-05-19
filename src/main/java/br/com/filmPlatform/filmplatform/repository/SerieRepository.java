@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SerieRepository extends JpaRepository<Serie, Long> {
-    Optional<Serie> findByTituloContainingIgnoreCase(String titulo);
+
+    @Query("SELECT s FROM Serie s WHERE s.titulo = :titulo")
+    Optional<Serie> buscarPorTitulo(String titulo);
 
     List<Serie> findByAtoresContainingIgnoreCase(String titulo);
 
@@ -17,14 +19,13 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     List<Serie> findByGenero(Categoria genero);
 
-    List<Serie> findByTotalDeTemporadasLessThanEqualAndAvaliacaoLessThanEqualOrderByAvaliacaoDesc(Integer numeroTemporada, Double avaliacao);
-
+    //List<Serie> findByTotalDeTemporadasLessThanEqualAndAvaliacaoLessThanEqualOrderByAvaliacaoDesc(Integer numeroTemporada, Double avaliacao);
     //@Query(value = "select * from series where series.total_de_temporadas >= 5 and series.avaliacao >= 8.0", nativeQuery = true)
-    @Query("select s from Serie s where s.totalDeTemporadas >= :numeroTemporada and s.avaliacao >= :avaliacao")
+    @Query("SELECT s FROM Serie s WHERE s.totalDeTemporadas >= :numeroTemporada AND s.avaliacao >= :avaliacao")
     List<Serie> serieMaratona(Integer numeroTemporada, Double avaliacao);
 
-    @Query("select s from Serie s where s.titulo = :serie")
-    Optional<Serie> verificaBanco(String serie);
+    @Query("SELECT s FROM Serie s WHERE s.titulo = :serie")
+    Optional<Serie> verificaSerieBanco(String serie);
 
     @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:trechoDoEpisodio%")
     List<Episodio> buscarEpisodio(String trechoDoEpisodio);
@@ -36,5 +37,5 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     List<Episodio>EpisodiosPorAno(Serie serie, Integer anoDosEpisodio);
 
     @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie")
-    List<Episodio> verificaEpisodio(Serie serie);
+    List<Episodio> verificaEpisodioBanco(Serie serie);
 }

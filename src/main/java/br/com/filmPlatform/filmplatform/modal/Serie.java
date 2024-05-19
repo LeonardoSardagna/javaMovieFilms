@@ -1,7 +1,8 @@
 package br.com.filmPlatform.filmplatform.modal;
 
+import br.com.filmPlatform.filmplatform.service.ConsultaIA;
 import jakarta.persistence.*;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,13 +28,13 @@ public class Serie {
 
     public Serie(){}
 
-    public Serie(DadosSerie dadosSerie) {
+    public Serie(DadosSerie dadosSerie) throws IOException {
         this.titulo = dadosSerie.titulo();
         this.ano = dadosSerie.ano();
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.totalDeTemporadas = dadosSerie.totalDeTemporadas();
         this.avaliacao = Optional.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0.0);
-        this.descicao = dadosSerie.descicao();
+        this.descicao = ConsultaIA.obterTraducao(dadosSerie.descicao()).trim();
         this.atores = dadosSerie.atores();
         this.imagem = dadosSerie.imagem();
     }

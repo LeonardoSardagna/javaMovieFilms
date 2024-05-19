@@ -6,6 +6,7 @@ import br.com.filmPlatform.filmplatform.service.ConverterDados;
 import br.com.filmPlatform.filmplatform.service.Requisicao;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class Principal {
 
     Optional<Serie> serieBuscada;
 
-    public void menuPrincipal() {
+    public void menuPrincipal() throws IOException {
         var opcao = -1;
         while (opcao != 0) {
             System.out.println("""
@@ -57,7 +58,7 @@ public class Principal {
                     buscarSeriePorTitulo();
                     break;
                 case 5:
-                    buscarPorAutores();
+                    buscarPorAtores();
                     break;
                 case 6:
                     buscarTop5Melhores();
@@ -100,11 +101,11 @@ public class Principal {
         return  serie;
     }
 
-    private void buscarSerie(){
+    private void buscarSerie() throws IOException {
         DadosSerie serie = getSerie();
         Serie dadoSerie = new Serie(serie);
 
-        Optional<Serie> verificador = repository.verificaBanco(serie.titulo());
+        Optional<Serie> verificador = repository.verificaSerieBanco(serie.titulo());
 
         if(verificador.isEmpty()){
             repository.save(dadoSerie);
@@ -118,7 +119,7 @@ public class Principal {
         System.out.println("Informe a série que deseja ver os episódios: ");
         var nomeDaSerie = entrada.nextLine();
 
-        Optional<Serie> serie = repository.findByTituloContainingIgnoreCase(nomeDaSerie);
+        Optional<Serie> serie = repository.buscarPorTitulo(nomeDaSerie);
 
         if (serie.isPresent()){
             List<DadosTemporada> listaDeTemporada = new ArrayList<>();
@@ -134,7 +135,7 @@ public class Principal {
                             .map(e -> new Episodio(d.temporada(), e)))
                     .collect(Collectors.toList());
 
-            List<Episodio> verificador = repository.verificaEpisodio(serie.get());
+            List<Episodio> verificador = repository.verificaEpisodioBanco(serie.get());
 
             if(verificador.isEmpty()){
                 serie.get().setEpisodios(episodios);
@@ -160,7 +161,7 @@ public class Principal {
         System.out.println("Insira um titulo para buscar:");
         var tituloSerie = entrada.nextLine();
 
-        serieBuscada = repository.findByTituloContainingIgnoreCase(tituloSerie);
+        serieBuscada = repository.buscarPorTitulo(tituloSerie);
 
         if (serieBuscada.isPresent()){
             System.out.println(serieBuscada.get());
@@ -170,7 +171,7 @@ public class Principal {
 
     }
 
-    private void buscarPorAutores(){
+    private void buscarPorAtores(){
         System.out.println("Informe um ator para buscar séries relacionadas:");
         var ator = entrada.nextLine();
 
