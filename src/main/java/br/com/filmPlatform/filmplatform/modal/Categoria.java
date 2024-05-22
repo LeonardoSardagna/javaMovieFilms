@@ -17,7 +17,10 @@ public enum Categoria {
     ESPORTE("Sports", "Esporte"),
     FAMILIA("Family", "Família"),
     ACAO("Action", "Ação"),
-    POLICIAL("Police", "Policial");
+    POLICIAL("Police", "Policial"),
+    DRAMA("Drama", "Drama"),
+    WESTERN("Western", "Ocidental"),
+    HORROR("Horror", "Horror");
 
     private String categoriasOmdb;
     private String categoriaOmdbPortugues;

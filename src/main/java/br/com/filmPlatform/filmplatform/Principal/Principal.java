@@ -5,7 +5,6 @@ import br.com.filmPlatform.filmplatform.repository.SerieRepository;
 import br.com.filmPlatform.filmplatform.service.ConverterDados;
 import br.com.filmPlatform.filmplatform.service.Requisicao;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -137,7 +136,7 @@ public class Principal {
 
             List<Episodio> verificador = repository.verificaEpisodioBanco(serie.get());
 
-            if(verificador.isEmpty()){
+            if(verificador.isEmpty() || verificador == null){
                 serie.get().setEpisodios(episodios);
                 repository.save(serie.get());
                 episodios.forEach(System.out::println);
@@ -215,16 +214,6 @@ public class Principal {
         var trechoDoEpisodio = entrada.nextLine();
 
         List<Episodio> episodiosEncontrados = repository.buscarEpisodio(trechoDoEpisodio);
-
-//        if (episodiosEncontrados.isEmpty()){
-//            System.out.println("Sem registro");
-//        }else {
-//            System.out.println("Encontrado");
-//        }
-
-//        episodiosEncontrados.forEach(e ->
-//                System.out.printf("Série: %s Temporada: %s - Episódio %s - %s \n",
-//                        e.getSerie().getTitulo(), e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()));
 
         episodiosEncontrados.forEach(e ->
                 System.out.println("Série: "+ e.getSerie().getTitulo()
