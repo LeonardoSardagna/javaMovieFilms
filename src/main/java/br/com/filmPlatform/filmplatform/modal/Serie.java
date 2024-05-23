@@ -13,9 +13,9 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "series")
-@Getter //cria os métodos get
-@Setter //cria os metodos set
-@NoArgsConstructor //cria um construtor padrão
+@Getter
+@Setter
+@NoArgsConstructor
 public class Serie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

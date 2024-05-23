@@ -10,9 +10,9 @@ import java.time.format.DateTimeParseException;
 
 @Entity
 @Table(name = "episodios")
-@Getter //adiciona os métodos get
-@Setter //adiciona os métodos set
-@NoArgsConstructor //cria um construtor padrão
+@Getter
+@Setter
+@NoArgsConstructor
 public class Episodio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

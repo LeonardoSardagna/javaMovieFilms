@@ -1,4 +1,4 @@
-package br.com.filmPlatform.filmplatform.Config;
+package br.com.filmPlatform.filmplatform.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

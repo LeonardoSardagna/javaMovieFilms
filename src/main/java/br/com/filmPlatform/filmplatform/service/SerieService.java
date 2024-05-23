@@ -1,6 +1,9 @@
 package br.com.filmPlatform.filmplatform.service;
 
-import br.com.filmPlatform.filmplatform.Dto.SeriesDTO;
+import br.com.filmPlatform.filmplatform.dto.EpisodioDTO;
+import br.com.filmPlatform.filmplatform.dto.SerieDTO;
+import br.com.filmPlatform.filmplatform.modal.Categoria;
+import br.com.filmPlatform.filmplatform.modal.Episodio;
 import br.com.filmPlatform.filmplatform.modal.Serie;
 import br.com.filmPlatform.filmplatform.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,51 +16,90 @@ import java.util.stream.Collectors;
 public class SerieService {
 
     @Autowired
-    private SerieRepository repository;
+    SerieRepository repository;
 
-    public List<SeriesDTO> converteDados(List<Serie> series){
-        return series
-                .stream()
-                .map(s-> new SeriesDTO(s.getId()
-                        ,s.getTitulo()
-                        ,s.getAno()
-                        ,s.getGenero()
-                        ,s.getTotalDeTemporadas()
-                        ,s.getAvaliacao()
-                        ,s.getDescicao()
-                        ,s.getAtores()
-                        ,s.getImagem()))
-                .collect(Collectors.toList());
+    public List<SerieDTO> converteDados(List<Serie> series){
+        List<SerieDTO> serie = series.stream()
+                .map(s -> new SerieDTO(s.getId(),
+                        s.getTitulo(),
+                        s.getAno(),
+                        s.getGenero(),
+                        s.getTotalDeTemporadas(),
+                        s.getAvaliacao(),
+                        s.getDescicao(),
+                        s.getAtores(),
+                        s.getImagem())).collect(Collectors.toList());
+
+        return serie;
     }
 
-    public List<SeriesDTO> obterSeries(){
+    public List<SerieDTO> obterSeries(){
         return converteDados(repository.findAll());
     }
 
-    public List<SeriesDTO> obterTop5Series() {
+    public List<SerieDTO> obterTop5(){
         return converteDados(repository.findTop5ByOrderByAvaliacaoDesc());
     }
 
-    public List<SeriesDTO> obterSeriesLancamento() {
+    public List<SerieDTO> obterLancamento(){
         return converteDados(repository.encontrarEpisodiosRecentes());
     }
 
-    public SeriesDTO obterIdEpisodio(Long id) {
+    public SerieDTO obterEpisodio(Long id){
         Optional<Serie> serie = repository.findById(id);
 
-        if(serie.isPresent()){
+        if (serie.isPresent()){
             Serie s = serie.get();
-            return new SeriesDTO(s.getId()
-                    ,s.getTitulo()
-                    ,s.getAno()
-                    ,s.getGenero()
-                    ,s.getTotalDeTemporadas()
-                    ,s.getAvaliacao()
-                    ,s.getDescicao()
-                    ,s.getAtores()
-                    ,s.getImagem());
-        }else {
+            return new SerieDTO(s.getId(),
+                    s.getTitulo(),
+                    s.getAno(),
+                    s.getGenero(),
+                    s.getTotalDeTemporadas(),
+                    s.getAvaliacao(),
+                    s.getDescicao(),
+                    s.getAtores(),
+                    s.getImagem());
+        }else{
             return null;
         }
+    }
+
+    public List<EpisodioDTO> obterTodosEpisodios(Long id) {
+        Optional<Serie> serie = repository.findById(id);
+
+        if (serie.isPresent()){
+            Serie s = serie.get();
+            return s.getEpisodios().stream()
+                    .map(e-> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                    .collect(Collectors.toList());
+
+        }else{
+            return null;
+        }
+    }
+
+    public List<EpisodioDTO> obterEpisodioSerie(Long id, Long numero) {
+        List<Episodio> episodioList = repository.obterEpisodiosSeries(id, numero);
+
+        return episodioList.stream()
+                .map(e-> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
+
+    public List<SerieDTO> obterSerieCategoria(String nomeCategoria) {
+        Categoria categoria = Categoria.fromStringPorgues(nomeCategoria);
+
+        List<Serie> series = repository.findByGenero(categoria);
+
+        return series.stream().map(s -> new SerieDTO(s.getId(),
+                s.getTitulo(),
+                s.getAno(),
+                s.getGenero(),
+                s.getTotalDeTemporadas(),
+                s.getAvaliacao(),
+                s.getDescicao(),
+                s.getAtores(),
+                s.getImagem()))
+                .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,6 @@
 package br.com.filmPlatform.filmplatform.repository;
 
+import br.com.filmPlatform.filmplatform.dto.EpisodioDTO;
 import br.com.filmPlatform.filmplatform.modal.Categoria;
 import br.com.filmPlatform.filmplatform.modal.Episodio;
 import br.com.filmPlatform.filmplatform.modal.Serie;
@@ -19,8 +20,6 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     List<Serie> findByGenero(Categoria genero);
 
-    //List<Serie> findByTotalDeTemporadasLessThanEqualAndAvaliacaoLessThanEqualOrderByAvaliacaoDesc(Integer numeroTemporada, Double avaliacao);
-    //@Query(value = "select * from series where series.total_de_temporadas >= 5 and series.avaliacao >= 8.0", nativeQuery = true)
     @Query("SELECT s FROM Serie s WHERE s.totalDeTemporadas >= :numeroTemporada AND s.avaliacao >= :avaliacao")
     List<Serie> serieMaratona(Integer numeroTemporada, Double avaliacao);
 
@@ -44,4 +43,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
             "GROUP BY s " +
             "ORDER BY MAX(e.dataDeLancamento) DESC LIMIT 5")
     List<Serie> encontrarEpisodiosRecentes();
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id AND e.temporada = :numero")
+    List<Episodio> obterEpisodiosSeries(Long id, Long numero);
 }

@@ -1,4 +1,4 @@
-package br.com.filmPlatform.filmplatform.Principal;
+package br.com.filmPlatform.filmplatform.principal;
 
 import br.com.filmPlatform.filmplatform.modal.*;
 import br.com.filmPlatform.filmplatform.repository.SerieRepository;
