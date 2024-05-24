@@ -136,7 +136,7 @@ public class Principal {
 
             List<Episodio> verificador = repository.verificaEpisodioBanco(serie.get());
 
-            if(verificador.isEmpty() || verificador == null){
+            if(verificador.isEmpty()){
                 serie.get().setEpisodios(episodios);
                 repository.save(serie.get());
                 episodios.forEach(System.out::println);

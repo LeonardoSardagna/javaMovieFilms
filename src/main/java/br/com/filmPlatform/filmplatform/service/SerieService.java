@@ -102,4 +102,12 @@ public class SerieService {
                 s.getImagem()))
                 .collect(Collectors.toList());
     }
+
+    public List<EpisodioDTO> obterMelhoresEpisodios(Long id) {
+        List<Episodio> episodios = repository.top5EpisodioSerie(id);
+
+        return episodios.stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
 }
