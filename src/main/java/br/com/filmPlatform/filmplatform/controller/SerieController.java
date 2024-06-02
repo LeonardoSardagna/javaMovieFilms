@@ -7,10 +7,7 @@ import br.com.filmPlatform.filmplatform.modal.Serie;
 import br.com.filmPlatform.filmplatform.repository.SerieRepository;
 import br.com.filmPlatform.filmplatform.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,5 +58,10 @@ public class SerieController {
     @GetMapping("/{id}/temporadas/top")
     public List<EpisodioDTO> obterTop5(@PathVariable Long id){
         return service.obterMelhoresEpisodios(id);
+    }
+
+    @GetMapping("/busca")
+    public List<SerieDTO> obterSeriePorTitulo(@RequestParam("q") String busca){
+        return service.seriePorTitulo(busca);
     }
 }

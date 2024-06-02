@@ -110,4 +110,20 @@ public class SerieService {
                 .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
                 .collect(Collectors.toList());
     }
+
+    public List<SerieDTO> seriePorTitulo(String busca){
+        List<Serie> series = repository.serieTitulo(busca);
+
+        return  series.stream()
+                .map(s -> new SerieDTO(s.getId(),
+                        s.getTitulo(),
+                        s.getAno(),
+                        s.getGenero(),
+                        s.getTotalDeTemporadas(),
+                        s.getAvaliacao(),
+                        s.getDescicao(),
+                        s.getAtores(),
+                        s.getImagem()))
+                .collect(Collectors.toList());
+    }
 }

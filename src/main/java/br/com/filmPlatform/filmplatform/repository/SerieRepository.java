@@ -1,6 +1,5 @@
 package br.com.filmPlatform.filmplatform.repository;
 
-import br.com.filmPlatform.filmplatform.dto.EpisodioDTO;
 import br.com.filmPlatform.filmplatform.modal.Categoria;
 import br.com.filmPlatform.filmplatform.modal.Episodio;
 import br.com.filmPlatform.filmplatform.modal.Serie;
@@ -13,6 +12,9 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query("SELECT s FROM Serie s WHERE s.titulo = :titulo")
     Optional<Serie> buscarPorTitulo(String titulo);
+
+    @Query("SELECT s FROM Serie s WHERE LOWER(s.titulo) LIKE LOWER(CONCAT('%', :titulo, '%'))")
+    List<Serie> serieTitulo(String titulo);
 
     List<Serie> findByAtoresContainingIgnoreCase(String titulo);
 
