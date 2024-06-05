@@ -176,8 +176,12 @@ public class Principal {
 
         List<Serie> series = repository.findByAtoresContainingIgnoreCase(ator);
 
-        series.forEach(s ->
-                System.out.println(s.getTitulo()+" Avaliação: "+s.getAvaliacao()+ " Atores: "+ s.getAtores()));
+        if(series.isEmpty()){
+            System.out.println("Não foi possível encontrar nenhum título com esse ator");
+        }else {
+            series.forEach(s ->
+                    System.out.println(s.getTitulo()+" Avaliação: "+s.getAvaliacao()+ " Atores: "+ s.getAtores()));
+        }
     }
 
     private void buscarTop5Melhores(){

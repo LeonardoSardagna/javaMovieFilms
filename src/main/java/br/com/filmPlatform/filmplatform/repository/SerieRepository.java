@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface SerieRepository extends JpaRepository<Serie, Long> {
 
-    @Query("SELECT s FROM Serie s WHERE s.titulo = :titulo")
+    @Query("SELECT s FROM Serie s WHERE LOWER(s.titulo) LIKE LOWER(CONCAT('%', :titulo, '%'))")
     Optional<Serie> buscarPorTitulo(String titulo);
 
     @Query("SELECT s FROM Serie s WHERE LOWER(s.titulo) LIKE LOWER(CONCAT('%', :titulo, '%'))")
