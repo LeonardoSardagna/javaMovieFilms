@@ -93,7 +93,7 @@ Abra um navegador web e acesse a URL http://localhost:8080.
 
 ###
 
-<p align="left">Este projeto backend, Java Films, se integra com um projeto frontend desenvolvido em React + TypeScript, chamado [reactFilms.]("https://github.com/LeonardoSardagna/reactFilms")</a> O projeto frontend consome as APIs do backend para exibir as informações das séries aos usuários de forma interativa.
+<p align="left">Este projeto backend, Java Films, se integra com um projeto frontend desenvolvido em React + TypeScript, chamado [reactFilms.](https://github.com/LeonardoSardagna/reactFilms)</a> O projeto frontend consome as APIs do backend para exibir as informações das séries aos usuários de forma interativa.
 
   <h3>Clone do Repositório React:</h3>
 
