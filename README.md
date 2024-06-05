@@ -8,7 +8,7 @@ Java Films é uma aplicação web que permite aos usuários acessar informaçõe
 
 ##
 
-##Funcionalidades
+## Funcionalidades
 
 ### Obter lista de séries
 - `/series`: Retorna uma lista de todas as séries cadastradas no sistema.
