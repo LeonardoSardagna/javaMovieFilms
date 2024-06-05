@@ -35,7 +35,7 @@
 ###
 
 <ul>
-  <li>>Framework: Spring Boot</li>
+  <li>Framework: Spring Boot</li>
   <li>Banco de Dados: PostgreSQL</li>
   <h3>APIs Externas:</h3>
   <li>OMDb API: https://www.omdbapi.com/</li>
@@ -82,7 +82,10 @@ Abra um navegador web e acesse a URL http://localhost:8080.
 
 ###
 
-<p align="left">A aplicação utiliza um banco de dados PostgreSQL. Certifique-se de ter o PostgreSQL instalado e configurado em sua máquina antes de executar o projeto.<br>Para utilizar a API do ChatGPT, é necessário ter uma conta na plataforma OpenAI e obter uma chave API.</p>
+<ul>
+  <li>A aplicação utiliza um banco de dados PostgreSQL. Certifique-se de ter o PostgreSQL instalado e configurado em sua máquina antes de executar o projeto.</li>
+  <li>Para utilizar a API do ChatGPT, é necessário ter uma conta na plataforma OpenAI e obter uma chave API.</li>
+</ul>
 
 ###
 
@@ -90,7 +93,7 @@ Abra um navegador web e acesse a URL http://localhost:8080.
 
 ###
 
-<p align="left">Este projeto backend, Java Films, se integra com um projeto frontend desenvolvido em React + TypeScript, chamado reactFilms. O projeto frontend consome as APIs do backend para exibir as informações das séries aos usuários de forma interativa.
+<p align="left">Este projeto backend, Java Films, se integra com um projeto frontend desenvolvido em React + TypeScript, chamado <a href"https://github.com/LeonardoSardagna/reactFilms">reactFilms.</a> O projeto frontend consome as APIs do backend para exibir as informações das séries aos usuários de forma interativa.
 
   <h3>Clone do Repositório React:</h3>
 
