@@ -12,18 +12,18 @@
 
 <ul>
   <h3>Obter lista de séries:</h3>
-  <li>`/series:` Retorna uma lista de todas as séries cadastradas no sistema.</li>
-  <li>`/top5:` Retorna as 5 séries mais bem avaliadas.</li>
-  <li>`/lancamentos:` Retorna as últimas séries adicionadas ao sistema.</li>
+  <li>/series: Retorna uma lista de todas as séries cadastradas no sistema.</li>
+  <li>/top5: Retorna as 5 séries mais bem avaliadas.</li>
+  <li>/lancamentos: Retorna as últimas séries adicionadas ao sistema.</li>
   <h3>Obter informações de uma série:</h3>
-  <li>`/{id}:` Retorna as informações de uma série específica, identificado pelo ID.</li>
+  <li>/{id}: Retorna as informações de uma série específica, identificado pelo ID.</li>
   <h3>Obter episódios de uma série:</h3>
-  <li>`/{id}/temporadas/todas:` Retorna todos os episódios de uma série específica, identificado pelo ID.</li>
-  <li>`/{id}/temporadas/{numero}:` Retorna os episódios de uma temporada específica de uma série, identificado pelo ID da série e o número da temporada.</li>
+  <li>/{id}/temporadas/todas: Retorna todos os episódios de uma série específica, identificado pelo ID.</li>
+  <li>/{id}/temporadas/{numero}: Retorna os episódios de uma temporada específica de uma série, identificado pelo ID da série e o número da temporada.</li>
   <h3>Obter melhores episódios de uma série:</h3>
-  <li>`/{id}/temporadas/top:` Retorna os 5 melhores episódios de uma série específica, identificado pelo ID.</li>
+  <li>/{id}/temporadas/top: Retorna os 5 melhores episódios de uma série específica, identificado pelo ID.</li>
   <h3>Buscar séries por título:</h3>
-  <li>`/busca?q={titulo}:` Retorna uma lista de séries que contêm o título especificado na busca.</li>
+  <li>/busca?q={titulo}: Retorna uma lista de séries que contêm o título especificado na busca.</li>
   <h3>Obter tradução da sinopse:</h3>
   <li>A tradução da sinopse das séries é feita utilizando a API do ChatGPT.</li>
 </ul>
