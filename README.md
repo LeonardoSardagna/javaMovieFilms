@@ -67,7 +67,7 @@ cd javaFilms
 3. Execute o projeto:
 
 ```bash
-./gradlew bootRun
+npm run dev
 ```
 
 4. Acesse a aplicação no navegador:
