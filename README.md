@@ -19,8 +19,8 @@ The API includes SpringDoc as a dependency, where all possible requests can be f
 
 #### External APIs:
 
--OMDb API
-ChatGPT API
+- OMDb API
+- ChatGPT API
 
 ###
 
