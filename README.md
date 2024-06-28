@@ -2,33 +2,33 @@
 
 ###
 
-Java Films é uma aplicação web que permite aos usuários acessar informações sobre séries de TV, utilizando a API OMDb para obter detalhes das séries e a API do ChatGPT para tradução de sinopses. A aplicação é construída com o framework Spring Boot e utiliza o banco de dados PostgreSQL para armazenamento de dados.
+Java Films is a web application that allows users to access information about TV series, using the OMDb API to obtain series details and the ChatGPT API for synopsis translation. The application is built with the Spring Boot framework and uses a PostgreSQL database for data storage.
 
 ###
 
-##
+## URL Controller Endpoints:
 
-## Endereços URL Controller:
+The API includes SpringDoc as a dependency, where all possible requests can be found. Use the following URL to check the available paths: http://localhost:8080/swagger-ui/index.html
 
-API possui o SpringDoc como dependência onde se encontra todas as requisições possíveis. Coloque a seguinte url para verificar os caminhos que podem ser realizados: http://localhost:8080/swagger-ui/index.html
-
-## Tecnologias Utilizadas
+## Technologies Used
 
 ###
 
 - Framework: Spring Boot
-- Banco de Dados: PostgreSQL
-#### APIs Externas:
-- [OMDb API](https://www.omdbapi.com/)
-- [ChatGPT API](https://chat.openai.com/)
+- Database: PostgreSQL
+
+####External APIs:
+
+-OMDb API
+ChatGPT API
 
 ###
 
-## Instruções de Uso
+## Usage Instructions
 
 ###
 
-1. Clone o repositório do front-end:
+1. Clone the front-end repository:
 
 ```bash
 git clone https://github.com/LeonardoSardagna/javaFilms.git
@@ -36,7 +36,7 @@ git clone https://github.com/LeonardoSardagna/javaFilms.git
 
 ###
 
-2. Acesse o diretório do projeto:
+2. Navigate to the project directory:
 
 ```bash
 cd javaFilms
@@ -44,13 +44,13 @@ cd javaFilms
 
 ###
 
-3. Execute o projeto:
+3. Run the project:
 
 ```bash
 mvn spring-boot:run
 ```
 
-4. Acesse a aplicação no navegador:
+4. Access the application in the browser:
 
 ```bash
 Abra um navegador web e acesse a URL http://localhost:8080.
@@ -58,17 +58,17 @@ Abra um navegador web e acesse a URL http://localhost:8080.
 
 ###
 
-## Observações
+## Notes
 
 ###
 
-- A aplicação utiliza um banco de dados PostgreSQL. Certifique-se de ter o PostgreSQL instalado e configurado em sua máquina antes de executar o projeto.
-- Para utilizar a API do ChatGPT, é necessário ter uma conta na plataforma OpenAI e obter uma chave API.
+- The application uses a PostgreSQL database. Make sure to have PostgreSQL installed and configured on your machine before running the project.
+- To use the ChatGPT API, you need an account on the OpenAI platform and an API key.
 
 ###
 
-## Integração com Frontend React + TypeScript
+## Integration with React + TypeScript Frontend
 
 ###
 
-Este projeto backend, Java Films, se integra com um projeto frontend desenvolvido em React + TypeScript, chamado [reactFilms.](https://github.com/LeonardoSardagna/reactFilms) O projeto frontend consome as APIs do backend para exibir as informações das séries aos usuários de forma interativa.
+This backend project, Java Films, integrates with a frontend project developed in React + TypeScript, called [reactFilms.](https://github.com/LeonardoSardagna/reactFilms) The frontend project consumes the backend APIs to display series information to users interactively.
