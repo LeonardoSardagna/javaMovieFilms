@@ -17,7 +17,7 @@ The API includes SpringDoc as a dependency, where all possible requests can be f
 - Framework: Spring Boot
 - Database: PostgreSQL
 
-####External APIs:
+#### External APIs:
 
 -OMDb API
 ChatGPT API
