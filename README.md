@@ -8,23 +8,9 @@ Java Films é uma aplicação web que permite aos usuários acessar informaçõe
 
 ##
 
-## Funcionalidades
+## Endereços URL Controller:
 
-### Obter lista de séries
-- `/series`: Retorna uma lista de todas as séries cadastradas no sistema.
-- `/top5`: Retorna as 5 séries mais bem avaliadas.
-- `/lancamentos`: Retorna as últimas séries adicionadas ao sistema.
-### Obter informações de uma série
-- `/{id}`: Retorna as informações de uma série específica, identificado pelo ID.
-### Obter episódios de uma série
-- `/{id}/temporadas/todas`: Retorna todos os episódios de uma série específica, identificado pelo ID.
-- `/{id}/temporadas/{numero}`: Retorna os episódios de uma temporada específica de uma série, identificado pelo ID da série e o número da temporada.
-### Obter melhores episódios de uma série:
-- `/{id}/temporadas/top`: Retorna os 5 melhores episódios de uma série específica, identificado pelo ID.
-### Buscar séries por título:
-- `/busca?q={titulo}`: Retorna uma lista de séries que contêm o título especificado na busca. 
-
-###
+API possui o SpringDoc como dependência onde se encontra todas as requisições possíveis. Coloque a seguinte url para verificar os caminhos que podem ser realizados: http://localhost:8080/swagger-ui/index.html
 
 ## Tecnologias Utilizadas
 
@@ -86,23 +72,3 @@ Abra um navegador web e acesse a URL http://localhost:8080.
 ###
 
 Este projeto backend, Java Films, se integra com um projeto frontend desenvolvido em React + TypeScript, chamado [reactFilms.](https://github.com/LeonardoSardagna/reactFilms) O projeto frontend consome as APIs do backend para exibir as informações das séries aos usuários de forma interativa.
-
-### Clone do Repositório React:
-
-1. Clone o repositório do front-end:
-
-```bash
-git clone https://github.com/LeonardoSardagna/reactFilms.git
-```
-
-2. Acesse o diretório do projeto:
-
-```bash
-cd reactFilms
-```
-
-3. Execute o projeto:
-
-```bash
-npm run dev
-```
