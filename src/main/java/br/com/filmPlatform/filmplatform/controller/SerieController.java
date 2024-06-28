@@ -7,6 +7,7 @@ import br.com.filmPlatform.filmplatform.modal.Serie;
 import br.com.filmPlatform.filmplatform.repository.SerieRepository;
 import br.com.filmPlatform.filmplatform.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,47 +22,56 @@ public class SerieController {
     private SerieService service;
 
     @GetMapping
-    public List<SerieDTO> obterSeries() {
-        return service.obterSeries();
+    public ResponseEntity<List<SerieDTO>> obterSeries() {
+        var serie = service.obterSeries();
+        return ResponseEntity.ok(serie);
     }
 
     @GetMapping("/top5")
-    public List<SerieDTO> obterTop5() {
-        return service.obterTop5();
+    public ResponseEntity<List<SerieDTO>> obterTop5() {
+        var top5 = service.obterTop5();
+        return ResponseEntity.ok(top5);
     }
 
     @GetMapping("/lancamentos")
-    public List<SerieDTO> obterLancamentos() {
-        return service.obterLancamento();
+    public ResponseEntity<List<SerieDTO>> obterLancamentos() {
+        var lancamento = service.obterLancamento();
+        return ResponseEntity.ok(lancamento);
     }
 
     @GetMapping("/{id}")
-    public SerieDTO obterEpisodio(@PathVariable Long id) {
-        return service.obterEpisodio(id);
+    public ResponseEntity obterEpisodio(@PathVariable Long id) {
+        var episodio = service.obterEpisodio(id);
+        return ResponseEntity.ok(episodio);
     }
 
     @GetMapping("/{id}/temporadas/todas")
-    public List<EpisodioDTO> obterEpisodios(@PathVariable Long id) {
-        return service.obterTodosEpisodios(id);
+    public ResponseEntity<List<EpisodioDTO>> obterEpisodios(@PathVariable Long id) {
+        var episodios = service.obterTodosEpisodios(id);
+        return ResponseEntity.ok(episodios);
     }
 
     @GetMapping("/{id}/temporadas/{numero}")
-    public List<EpisodioDTO> obterEpisodioNumero(@PathVariable Long id, @PathVariable Long numero) {
-        return service.obterEpisodioSerie(id, numero);
+    public ResponseEntity<List<EpisodioDTO>> obterEpisodioNumero(@PathVariable Long id, @PathVariable Long numero) {
+        var unicoEpisodio = service.obterEpisodioSerie(id, numero);
+        return ResponseEntity.ok(unicoEpisodio);
     }
 
     @GetMapping("/categoria/{nomeCategoria}")
-    public List<SerieDTO> obterSarieCategoria(@PathVariable String nomeCategoria){
-        return service.obterSerieCategoria(nomeCategoria);
+    public ResponseEntity<List<SerieDTO>> obterSarieCategoria(@PathVariable String nomeCategoria){
+        var serieCategoria = service.obterSerieCategoria(nomeCategoria);
+        return ResponseEntity.ok(serieCategoria);
     }
 
     @GetMapping("/{id}/temporadas/top")
-    public List<EpisodioDTO> obterTop5(@PathVariable Long id){
-        return service.obterMelhoresEpisodios(id);
+    public ResponseEntity<List<EpisodioDTO>> obterTop5(@PathVariable Long id){
+        var top = service.obterMelhoresEpisodios(id);
+        return ResponseEntity.ok(top);
     }
 
     @GetMapping("/busca")
-    public List<SerieDTO> obterSeriePorTitulo(@RequestParam("q") String busca){
-        return service.seriePorTitulo(busca);
+    public ResponseEntity<List<SerieDTO>> obterSeriePorTitulo(@RequestParam("q") String busca){
+        var pesquisa = service.seriePorTitulo(busca);
+        return ResponseEntity.ok(pesquisa);
     }
 }
